@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import './Hero.css'
 import Navbar from './Navbar'
 
 const Hero = () => {
+  const [isUpsideDown, setIsUpsideDown] = useState(false);
   const heroRef = useRef(null)
   const revealRef = useRef(null)
 
@@ -72,37 +73,49 @@ const Hero = () => {
   }
 
   return (
-    <div className="hero" ref={heroRef}>
+   <div
+  className="hero"
+  ref={heroRef}
+  style={{
+    height: "100vh",
+    backgroundImage: `url('/images/${isUpsideDown ? "v1.png" : "will1.webp"}')`,
+    backgroundSize: "cover",
+    backgroundPosition: "center 10%",
+    position: "relative",
+    overflow: "hidden",
+  }}
+>
+
       <motion.div variants={navbarVariant} initial="hidden" animate="visible">
         <Navbar />
       </motion.div>
 
       <motion.div className="hero-content" variants={container} initial="hidden" animate="visible">
         <motion.div className="left" variants={item}>
-          <h1 className="st-title">
+          <h1 className="st-title" >
             STRANGER<br />THINGS
           </h1>
-          <motion.p className="st-desc" variants={item}>
+          <motion.p className="st-desc" variants={item} style={{ color: isUpsideDown ? 'red' : 'black' }}>
             When the lights begin to flicker and reality bends,
             a hidden world awakens beneath Hawkins.
             Some doors, once opened, can never be closed.
           </motion.p>
-          <motion.button className="st-btn" variants={item}>
+          <motion.button className="st-btn" variants={item} onClick={() => setIsUpsideDown(!isUpsideDown)}>
             Enter the Upside Down
           </motion.button>
         </motion.div>
 
         <motion.div className="right" variants={item}>
-          <h1 className="st-title">The Mind Flayer</h1>
-          <motion.p className="st-text" variants={item}>
+          <h1 className="st-title" >The Mind Flayer</h1>
+          <motion.p className="st-text" variants={item} style={{ color: isUpsideDown ? 'red' : 'black' }}>
             Shadows creep from another dimension, consuming everything in their path.
             Unravel the mystery and face the darkness head-on.
             Will you survive the terror of the Upside Down?
           </motion.p>
         </motion.div>
       </motion.div>
+<div className="fire-reveal" ref={revealRef} style={{ backgroundImage: `url('/images/${isUpsideDown ? 'will1.webp' : 'v1.png'}')` }}></div>
 
-      <div className="fire-reveal" ref={revealRef}></div>
     </div>
   )
 }
