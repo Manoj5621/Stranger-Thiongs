@@ -4,7 +4,7 @@ A cinematic Stranger Things themed React project featuring engaging animations a
 
 ## Project Preview
 
-![Project Screenshot](public/images/Screenshot 2026-01-09 155227.png)
+<img src="public/images/Screenshot 2026-01-09 155227.png" alt="Stranger Things "/>
 
 ## Installation & Setup
 
